@@ -79,6 +79,7 @@ const createBooking = async (stripeSession) => {
 exports.webhookCheckout = (req,res,next) => {
     
     const signature = req.headers["stripe-signature"];
+
     let event;
     try {
          // This req.body comes as raw not as json 

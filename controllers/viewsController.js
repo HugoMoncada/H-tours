@@ -20,7 +20,7 @@ exports.getMyTours = async (req,res,next) => {
     console.log(bookings); 
     const tours  =  [];
 
-    return res.status(200),render("overview", {
+    return res.status(200).render("overview", {
         tittle: "My tours", 
         pageTitle: "My Tours",
         tours
