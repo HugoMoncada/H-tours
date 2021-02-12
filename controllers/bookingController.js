@@ -58,12 +58,7 @@ exports.getCheckOutSession = async (req,res,next) => {
 
 const createBooking = async (stripeSession) => {
     // tour ID sent in the session 
-
-    console.log("ESTE ES EL ID DEL TOUR 😊", stripeSession.client_reference_id);
-    console.log("ESTE ES EL email DEL TOUR 😊", stripeSession.customer_details.email);
-    console.log("ESTE ES EL precio DEL TOUR 😊", stripeSession.amount_total);
-
-
+    
     const tour = stripeSession.client_reference_id; 
 
     const user = (await User.findOne({email: stripeSession.customer_details.email})).id;
@@ -72,35 +67,45 @@ const createBooking = async (stripeSession) => {
 
     await Booking.create({ tour, user, price }); 
 
+    return res.status(200).json({
+        recived: true,
+    });
+
 }
 
 // This gets used from the index route at the top ...
 // !THIS ONLY WORKS ONCE THE SITE IS UPLOADED CAUSE IT USES WEBHOOK FROM STRIPE ON A SERVER
 exports.webhookCheckout = async (req,res,next) => {
-    console.log("I GOT HERRRE TO THE WEBHOOK"); 
-
-
-    const signature = req.headers["stripe-signature"];
-
+   
+    const signature = req.headers['stripe-signature'];
     let event;
+
     try {
-         // This req.body comes as raw not as json 
+      event = JSON.parse(req.body);
+
+    } catch (err) {
+      console.log(`⚠️  Webhook error while parsing basic request.`, err.message);
+      return res.send();
+    }
+
+    try {
+        // This req.body comes as raw not as json 
         event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET); 
 
     } catch (error) {
         // stripe recives this error it called this endpoint
         return res.status(400).send(`Web hook error:  ${error}` );
     }
-   
+
     if(event.type === "checkout.session.completed"){
-        await createBooking(event.data.object);
+
+        createBooking(event.data.object);
 
         return res.status(200).json({
             recived: true,
         });
     }
 
-
-
+    res.send();
 
 }

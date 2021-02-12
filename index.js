@@ -94,62 +94,7 @@ app.use(morgan("dev"));
 // *ROUTES
 // !This route is here because it CAN'T be parsed to json, this data is neccesary as RAW data
 // this post request is send by stripe as a webhook
-app.post("/webhook-checkout", express.raw({type: "application/json"}), async (req,res) => {
-    
-    console.log("inside the hook")
-
-    const signature = req.headers['stripe-signature'];
-    let event;
-
-    try {
-
-      event = JSON.parse(req.body);
-  
-    } catch (err) {
-  
-      console.log(`⚠️  Webhook error while parsing basic request.`, err.message);
-  
-      return res.send();
-  
-    }
-
-    try {
-          // This req.body comes as raw not as json 
-        event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET); 
-        console.log("evento enviardo desde el try 🎇🎇🎇", event);
-
-    } catch (error) {
-        // stripe recives this error it called this endpoint
-        return res.status(400).send(`Web hook error:  ${error}` );
-    }
-
-    if(event.type === "checkout.session.completed"){
-        console.log("checkout session ok! creating booking ✔✔")
-        const stripeSession = event.data.object
-        console.log("OBJETO EVENT ✨", event);
-        console.log("OBJETO QUE DEVUELVE 🐱‍🏍", stripeSession);
-
-        console.log("ESTE ES EL ID DEL TOUR 😊", stripeSession.client_reference_id);
-        console.log("ESTE ES EL email DEL TOUR 😊", stripeSession.customer_details.email);
-        console.log("ESTE ES EL precio DEL TOUR 😊", stripeSession.amount_total);
-
-
-        const tour = stripeSession.client_reference_id; 
-
-        const user = (await User.findOne({email: stripeSession.customer_details.email})).id;
-
-        const price = stripeSession.amount_total / 100; 
-
-        await Booking.create({ tour, user, price }); 
-
-        return res.status(200).json({
-            recived: true,
-        });
-    }
-
-    res.send()
-
-});
+app.post("/webhook-checkout", express.raw({type: "application/json"}), webhookCheckout ); 
 
 
 
