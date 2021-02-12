@@ -13,6 +13,8 @@ const mongoSanitize = require("express-mongo-sanitize");
 const compression = require("compression");
 const cors = require("cors");
 const {webhookCheckout} = require("./controllers/bookingController");
+const Booking = require("./models/BookingModel"); 
+const User = require("./models/UserModel"); 
 const port = process.env.PORT || 3000;
 
 const app = express(); 
@@ -32,12 +34,6 @@ const viewRoutes = require("./routes/viewRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 
 DbConnection();
-
-
-// !This route is here because it CAN'T be parsed to json, this data is neccesary as RAW data
-// this post request is send by stripe as a webhook
-app.post("/webhook-checkout", express.raw({type: "application/json"}), webhookCheckout);
-// !------------------------------------------------------------------------
 
 
 
@@ -94,6 +90,53 @@ app.use(helmet({
 );
 app.use(morgan("dev"));
 
+// *ROUTES
+// !This route is here because it CAN'T be parsed to json, this data is neccesary as RAW data
+// this post request is send by stripe as a webhook
+app.post("/webhook-checkout", express.raw({type: "application/json"}), async (req,res) => {
+    
+    console.log("inside the hook")
+
+    const signature = req.headers["stripe-signature"];
+    let event;
+    try {
+          // This req.body comes as raw not as json 
+        event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET); 
+
+    } catch (error) {
+        // stripe recives this error it called this endpoint
+        return res.status(400).send(`Web hook error:  ${error}` );
+    }
+
+    if(event.type === "checkout.session.completed"){
+
+        const stripeSession = event.data.object
+
+        console.log("ESTE ES EL ID DEL TOUR 😊", stripeSession.client_reference_id);
+        console.log("ESTE ES EL email DEL TOUR 😊", stripeSession.customer_details.email);
+        console.log("ESTE ES EL precio DEL TOUR 😊", stripeSession.amount_total);
+
+
+        const tour = stripeSession.client_reference_id; 
+
+        const {id} = await User.findOne({email: stripeSession.customer_details.email});
+
+        const price = stripeSession.amount_total / 100; 
+
+        await Booking.create({ tour, id, price }); 
+
+        return res.status(200).json({
+            recived: true,
+        });
+    }
+
+});
+
+
+
+
+
+
 
 // Body and Cookie parser from the request
 app.use(express.json( {limit: "10kb"} ) );
@@ -127,7 +170,9 @@ app.use(hpp({
 app.use(compression());
 
 
-// *ROUTES
+
+
+
 app.use("/api/v1/tours",tourRoutes);
 app.use("/api/v1/users",userRoutes);
 app.use("/api/v1/reviews", reviewRoutes);
