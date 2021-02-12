@@ -11,10 +11,11 @@ const helmet = require("helmet");
 const hpp = require("hpp");
 const mongoSanitize = require("express-mongo-sanitize");
 const compression = require("compression");
-const csp = require("express-csp");
+const cors = require("cors");
 const port = process.env.PORT || 3000;
 
 const app = express(); 
+
 // allow heroku as a proxy
 app.enable("trust proxy")
 
@@ -33,6 +34,8 @@ DbConnection();
 
 
 // *MIDDLEWARES
+app.use(cors());
+app.options("*", cors());
 app.use(helmet({
     contentSecurityPolicy: {
       directives: {
