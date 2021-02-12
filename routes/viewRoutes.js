@@ -1,12 +1,14 @@
 const router = require("express").Router(); 
-const {getOverview, getTour, loginForm, logOut, accountView} = require("../controllers/viewsController");
-const {isLoggedIn} = require("../controllers/authController");
+const {getOverview, getTour, loginForm, logOut, accountView,getMyTours} = require("../controllers/viewsController");
+const {isLoggedIn, authenticate} = require("../controllers/authController");
 
 
 router.use(isLoggedIn);
 
 
 router.get("/", getOverview); 
+
+router.get("/my-tours", authenticate ,getMyTours); 
 
 // router.get("/tour", getTour);
 router.get("/tour/:slug", getTour); 

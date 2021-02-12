@@ -1,4 +1,7 @@
 const Tour = require("../models/TourModel")
+const Booking = require("../models/BookingModel"); 
+const User = require("../models/UserModel"); 
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.getCheckOutSession = async (req,res,next) => {
@@ -12,15 +15,14 @@ exports.getCheckOutSession = async (req,res,next) => {
     }
 
     try {
-        
         // 2. Create checkout session 
         const session = await stripe.checkout.sessions.create({
             // Session information
             payment_method_types: ["card"],
-            success_url: `${req.protocol}://${req.get("host")}/`,
+            success_url: `${req.protocol}://${req.get("host")}/my-tours`,
             cancel_url: `${req.protocol}://${req.get("host")}/tour/${tour.slug}`,
             customer_email: `${req.user.email}`,
-            // To create a bookin in the db later
+            // To create a booking in the db later
             client_reference_id: req.params.tourId,
 
             //Product information
@@ -50,6 +52,43 @@ exports.getCheckOutSession = async (req,res,next) => {
             status: "Error", 
             message: error
         }); 
+    }
+}
+
+
+const createBooking = async (stripeSession) => {
+    // tour ID sent in the session 
+    const tour = stripeSession.client_reference_id; 
+
+    const user = (await User.findOne({email: stripeSession.customer_email})).id;
+
+    const price = stripeSession.display_items[0].amount / 100; 
+
+    await Booking.create({ tour, user, price }); 
+
+}
+
+// This gets used from the index route at the top ...
+// !THIS ONLY WORKS ONCE THE SITE IS UPLOADED CAUSE IT USES WEBHOOK FROM STRIPE ON A SERVER
+exports.webhookCheckout = (req,res,next) => {
+    
+    const signature = req.headers["stripe-signature"];
+    let event;
+    try {
+         // This req.body comes as raw not as json 
+        event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET); 
+
+    } catch (error) {
+        // stripe recives this error it called this endpoint
+        return res.status(400).send(`Web hook error:  ${error}` );
+    }
+   
+    if(event.type === "checkout.session.completed"){
+        createBooking(event.data.object);
+
+        return res.status(200).json({
+            recived: true
+        });
     }
 
 

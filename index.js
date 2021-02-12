@@ -12,6 +12,7 @@ const hpp = require("hpp");
 const mongoSanitize = require("express-mongo-sanitize");
 const compression = require("compression");
 const cors = require("cors");
+const {webhookCheckout} = require("./controllers/bookingController");
 const port = process.env.PORT || 3000;
 
 const app = express(); 
@@ -85,6 +86,12 @@ app.use(helmet({
   })
 );
 app.use(morgan("dev"));
+
+// !This route is here because it CAN'T be parsed to json, this data is neccesary as RAW data
+// this post request is send by stripe as a webhook
+app.post("/webhook-checkout", express.raw({type: "application/json"}), webhookCheckout);
+// !------------------------------------------------------------------------
+
 // Body and Cookie parser from the request
 app.use(express.json( {limit: "10kb"} ) );
 app.use(cookieParser());

@@ -5,6 +5,8 @@ block append head
 
 block content
     main.container.mt-5
+        if pageTitle
+            p=pageTitle
         .row.mb-5
             each tour in tours
                 .col-sm-6.col-lg-4.mb-4

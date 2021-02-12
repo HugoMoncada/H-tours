@@ -1,4 +1,5 @@
 const Tour = require("../models/TourModel"); 
+const Booking = require("../models/BookingModel");
 
 
 
@@ -8,8 +9,16 @@ exports.getOverview = async (req,res,next) => {
 
     return res.status(200).render("overview", {
         tittle: "All tours",
+        pageTitle: "Welcome",
         tours
     });
+}
+
+exports.getMyTours = async (req,res,next) => {
+    // TODO:terminar esto 
+    const bookings = await Booking.find({user: req.user.id}); 
+
+    console.log(bookings); 
 }
 
 exports.getTour = async (req,res,next) => {
