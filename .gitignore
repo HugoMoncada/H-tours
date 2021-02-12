@@ -1,0 +1,6 @@
+node_modules
+*.env
+*dev-data
+.vscode
+!.vscode/launch.json
+Documentacion_read_me.txt

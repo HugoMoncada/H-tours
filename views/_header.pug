@@ -1,0 +1,20 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.p-3
+    .container-fluid
+        a.navbar-brand(href='/') Natours
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            .mx-auto.mb-2                      
+                img.logo-white.d-none.d-lg-block(src="/img/logo-white.png", alt="Natours logo")
+            .d-flex
+                // comes from isLoggedIn asssinged to locals
+                if user
+                    //- logged in
+                    a.btn.text-success.my-auto(href="/logout") Log Out
+                    a.btn.text-success.d-flex(href="/account")
+                        img.user-photo(src=`/img/users/${user.photo}`, alt="user photo")
+                        p.my-auto.ms-1= user.name.split(" ")[0]
+                else
+                    //- Not logged in 
+                    a.btn.text-success.me-2(href="/login") LOG IN
+                    a.btn.btn-outline-success.rounded-pill(href="#") SIGN UP

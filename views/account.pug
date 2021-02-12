@@ -1,0 +1,73 @@
+extends base 
+
+mixin optionsItem(icon,ref,name,active)
+     li.ps-3(class=`${active ? "active" : ""}`)
+         a.d-flex(href=`${ref}`)
+            svg(class="bi me-3" width="32" height="32" fill="currentColor")
+                use(xlink:href=`bootstrap-icons.svg#${icon}`)
+            p.my-auto= name
+         
+
+block append head 
+    link(rel="stylesheet", href="/css/account.css")
+
+block content 
+    //- Always berified if there is an user .. this is mean its logged in 
+    if user 
+        .container 
+            .row 
+                .col-sm-12.col-md-3.account-options.py-5
+                    ul.mb-5
+                        +optionsItem("gear","/account", "Settings", true)
+                        +optionsItem("briefcase","#", "My Bookings")
+                        +optionsItem("star","#", "My Reviews")
+                        +optionsItem("credit-card-2-back","#", "Billing")
+                    if user.role == "admin"
+                        p.text-center.mb-4.pb-3.w-75.adminTitle.mx-auto ADMIN
+                        ul.mb-5
+                            +optionsItem("map","/account", "Manage Tours")
+                            +optionsItem("people","#", "Manage Users")
+                            +optionsItem("star","#", "Manage Reviews")
+                            +optionsItem("briefcase","#", "Manage Bookings")
+
+                .col-sm-12.col-md-9.py-5
+                    .row
+                        .col-8.mx-auto
+                            p.accountFormTitle.text-center YOUR ACCOUNT SETTINGS
+                            form.p-3.login-form.accoutDataForm#accoutDataForm(enctype="multipart/form-data")
+                                article.mb-4
+                                    label.form-label(for="name" ) Name
+                                    input.form-control#name(type="text" required name="name" value=user.name maxlength="30")
+                                article.mb-4
+                                    label.form-label(for="email" ) E-mail
+                                    input.form-control#email(type="email" required name="email" value=user.email)
+                                article.mb-5.d-flex 
+                                    img.me-4#photo-account-img(src=`/img/users/${user.photo}` alt="user photo")
+                                    input#photo(type='file', accept='image/*', name='photo')
+                                    label.photoLabel.my-auto#photoLabel(for='photo') Choose new photo
+                                
+                                button.btn.mb-5 Save Settings
+
+                            hr.w-100.mb-5
+                            p.accountFormTitle.text-center PASSWORD CHANGE
+                            form.p-3.login-form.accoutPasswordForm#accoutPasswordForm
+                                article.mb-4
+                                    label.form-label(for="currentPassword" ) Current Password
+                                    input.form-control#currentPassword(type="password" required name="currentPassword" minlength="8")
+                                article.mb-4
+                                    label.form-label(for="newPassword" ) New Password
+                                    input.form-control#newPassword(type="password" required name="newPassword" minlength="8")
+                                article.mb-5
+                                    label.form-label(for="confirmPassword" ) Confirm Password
+                                    input.form-control#confirmPassword(type="password" required name="confirmPassword" minlength="8")
+                                
+                                button#savePasswordBtn.btn.mb-5 Save Password
+
+
+
+    else
+        .container.d-flex
+            h1.logIn-text.my-5.py-5.mx-auto Please log in
+
+block append scripts 
+     script(src="/js/account.js")

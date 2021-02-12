@@ -1,0 +1,28 @@
+extends baseSingleForms
+
+block append head
+     link(rel="stylesheet", href="/css/login.css")
+
+block content
+    .container.my-5
+        div.d-flex.justify-content-center
+            .card
+                .card-header.pt-4.pb-3.text-center
+                    p LOG INTO YOUR ACCOUNT
+                .card-body
+                    form.p-3.login-form#formLogin
+                        article.mb-4
+                            label.form-label(for="email" ) E-mail
+                            input.form-control#email(type="email" required placeholder="yourEmail@example.com" name="email")
+                        article.mb-5
+                            label.form-label(for="password") Password
+                            input.form-control#password(type="password" aria-describedby='passwordHelpBlock' required name="password" minlength=8)
+                            #passwordHelpBlock.form-text.help
+                            | Your password must be 8-20 characters long, must not contain spaces, special characters, or emoji.
+                        button.btn LOG IN
+                .card-footer.py-3
+                    .d-flex.justify-content-center.mb-2
+                        p.me-2 Don't have account? 
+                        a(href="/signUp") Sign Up
+                    .d-flex.justify-content-center
+                        a(href="/forgotPassword") Forgot Password?

@@ -1,0 +1,51 @@
+footer{
+	background-color: lightgray;
+}
+
+footer img{
+	width: 250px;
+}
+
+footer ul {
+	display: flex;
+	justify-content: center;
+}
+
+footer a{
+	justify-content: center;
+}
+
+
+footer ul li{
+	margin-right: 30px;
+}
+
+footer a{
+	text-decoration: none;
+	color: rgb(56, 56, 56);
+	font-size: 18px;
+}
+
+footer a:hover{
+	color: green;
+}
+
+
+
+/* MEDIA */
+
+@media (max-width: 450px) { 
+	
+	
+	footer img{
+		width: 180px;
+		display: block;
+	}
+
+
+	footer ul {
+		display: block;
+		text-align: center;
+	}
+
+}
