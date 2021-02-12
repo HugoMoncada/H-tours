@@ -15,6 +15,7 @@ const cors = require("cors");
 const {webhookCheckout} = require("./controllers/bookingController");
 const Booking = require("./models/BookingModel"); 
 const User = require("./models/UserModel"); 
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const port = process.env.PORT || 3000;
 
 const app = express(); 
