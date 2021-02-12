@@ -19,8 +19,8 @@ exports.getMyTours = async (req,res,next) => {
     const bookings = await Booking.find({user: req.user.id}); 
     console.log(bookings); 
     const tours  =  [];
-    
-    return res.statu(200),render("overview", {
+
+    return res.status(200),render("overview", {
         tittle: "My tours", 
         pageTitle: "My Tours",
         tours
