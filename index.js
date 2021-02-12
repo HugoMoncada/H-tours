@@ -15,11 +15,13 @@ const csp = require("express-csp");
 const port = process.env.PORT || 3000;
 
 const app = express(); 
+// allow heroku as a proxy
+app.enable("trust proxy")
 
 app.set("view engine", "pug"); 
 app.set("views", path.join(__dirname, "views") );
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static('./public'));
+
 
 const tourRoutes = require("./routes/tourRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -137,7 +139,13 @@ app.all("*", (req,res, next)=> {
 });
 
 
+const server = app.listen(port, () => {console.log(`Server On!! ✔ port ${port}`)});
 
-app.listen(port, () => {console.log(`Server On!! ✔ port ${port}`)});
 
+process.on("SIGTERM", () => {
+  console.log("SIGTERM recived from app host shutting down!")
+   server.close( ()=> {
+     console.log(" Process terminated ");
+   });
+});
 
