@@ -58,6 +58,11 @@ exports.getCheckOutSession = async (req,res,next) => {
 
 const createBooking = async (stripeSession) => {
     // tour ID sent in the session 
+    console.log("ESTE ES EL ID DEL TOUR 😊", tour);
+    console.log("ESTE ES EL email DEL TOUR 😊", stripeSession.customer_email);
+    console.log("ESTE ES EL precio DEL TOUR 😊", stripeSession.amount_total);
+
+
     const tour = stripeSession.client_reference_id; 
 
     const user = (await User.findOne({email: stripeSession.customer_email})).id;

@@ -17,8 +17,14 @@ exports.getOverview = async (req,res,next) => {
 exports.getMyTours = async (req,res,next) => {
     // TODO:terminar esto 
     const bookings = await Booking.find({user: req.user.id}); 
-
     console.log(bookings); 
+    const tours  =  [];
+    
+    return res.statu(200),render("overview", {
+        tittle: "My tours", 
+        pageTitle: "My Tours",
+        tours
+    });
 }
 
 exports.getTour = async (req,res,next) => {
