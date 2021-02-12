@@ -123,9 +123,8 @@ app.post("/webhook-checkout", express.raw({type: "application/json"}), async (re
     }
 
     if(event.type === "checkout.session.completed"){
-        console.log("checkout session ok! creating booking ✔✔");
-        const stripeSession = event.data.object;
-        // console.log(stripeSession);
+        console.log("checkout session ok! creating booking ✔✔")
+        const stripeSession = event.data.object
         console.log("OBJETO EVENT ✨", event);
         console.log("OBJETO QUE DEVUELVE 🐱‍🏍", stripeSession);
 
