@@ -77,6 +77,8 @@ const createBooking = async (stripeSession) => {
 // This gets used from the index route at the top ...
 // !THIS ONLY WORKS ONCE THE SITE IS UPLOADED CAUSE IT USES WEBHOOK FROM STRIPE ON A SERVER
 exports.webhookCheckout = (req,res,next) => {
+    console.log("I GOT HERRRE TO THE WEBHOOK"); 
+
     
     const signature = req.headers["stripe-signature"];
 
