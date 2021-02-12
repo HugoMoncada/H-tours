@@ -79,7 +79,7 @@ const createBooking = async (stripeSession) => {
 exports.webhookCheckout = (req,res,next) => {
     console.log("I GOT HERRRE TO THE WEBHOOK"); 
 
-    
+
     const signature = req.headers["stripe-signature"];
 
     let event;
@@ -96,7 +96,8 @@ exports.webhookCheckout = (req,res,next) => {
         createBooking(event.data.object);
 
         return res.status(200).json({
-            recived: true
+            recived: true,
+            message: "alo"
         });
     }
 
