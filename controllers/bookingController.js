@@ -76,7 +76,7 @@ const createBooking = async (stripeSession) => {
 
 // This gets used from the index route at the top ...
 // !THIS ONLY WORKS ONCE THE SITE IS UPLOADED CAUSE IT USES WEBHOOK FROM STRIPE ON A SERVER
-exports.webhookCheckout = (req,res,next) => {
+exports.webhookCheckout = async (req,res,next) => {
     console.log("I GOT HERRRE TO THE WEBHOOK"); 
 
 
@@ -93,11 +93,10 @@ exports.webhookCheckout = (req,res,next) => {
     }
    
     if(event.type === "checkout.session.completed"){
-        createBooking(event.data.object);
+        await createBooking(event.data.object);
 
         return res.status(200).json({
             recived: true,
-            message: "alo"
         });
     }
 
