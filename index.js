@@ -98,18 +98,18 @@ app.post("/webhook-checkout", express.raw({type: "application/json"}), async (re
     
     console.log("inside the hook")
 
-    const signature = request.headers['stripe-signature'];
+    const signature = req.headers['stripe-signature'];
     let event;
 
     try {
 
-      event = JSON.parse(request.body);
+      event = JSON.parse(req.body);
   
     } catch (err) {
   
       console.log(`⚠️  Webhook error while parsing basic request.`, err.message);
   
-      return response.send();
+      return res.send();
   
     }
 
