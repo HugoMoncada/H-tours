@@ -124,10 +124,9 @@ app.post("/webhook-checkout", express.raw({type: "application/json"}), async (re
 
     if(event.type === "checkout.session.completed"){
         console.log("checkout session ok! creating booking ✔✔")
+        
         const stripeSession = event.data.object
-        console.log("OBJETO EVENT ✨", event);
-        console.log("OBJETO QUE DEVUELVE 🐱‍🏍", stripeSession);
-
+   
         console.log("ESTE ES EL ID DEL TOUR 😊", stripeSession.client_reference_id);
         console.log("ESTE ES EL email DEL TOUR 😊", stripeSession.customer_details.email);
         console.log("ESTE ES EL precio DEL TOUR 😊", stripeSession.amount_total);
@@ -135,11 +134,11 @@ app.post("/webhook-checkout", express.raw({type: "application/json"}), async (re
 
         const tour = stripeSession.client_reference_id; 
 
-        const {id} = await User.findOne({email: stripeSession.customer_details.email});
+        const user = (await User.findOne({email: stripeSession.customer_details.email})).id;
 
         const price = stripeSession.amount_total / 100; 
 
-        await Booking.create({ tour, id, price }); 
+        await Booking.create({ tour, user, price }); 
 
         return res.status(200).json({
             recived: true,
