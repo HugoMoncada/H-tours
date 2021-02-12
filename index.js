@@ -98,8 +98,21 @@ app.post("/webhook-checkout", express.raw({type: "application/json"}), async (re
     
     console.log("inside the hook")
 
-    const signature = req.headers["stripe-signature"];
+    const signature = request.headers['stripe-signature'];
     let event;
+
+    try {
+
+      event = JSON.parse(request.body);
+  
+    } catch (err) {
+  
+      console.log(`⚠️  Webhook error while parsing basic request.`, err.message);
+  
+      return response.send();
+  
+    }
+
     try {
           // This req.body comes as raw not as json 
         event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET); 
@@ -130,6 +143,8 @@ app.post("/webhook-checkout", express.raw({type: "application/json"}), async (re
             recived: true,
         });
     }
+
+    res.send()
 
 });
 
