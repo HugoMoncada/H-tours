@@ -17,8 +17,10 @@ exports.getOverview = async (req,res,next) => {
 exports.getMyTours = async (req,res,next) => {
     // TODO:terminar esto 
     const bookings = await Booking.find({user: req.user.id}); 
-    console.log(bookings); 
-    const tours  =  [];
+
+    const tourIDs = bookings.map(el => el.tour);
+    const tours = await Tour.find({ _id: { $in: tourIDs } });
+   
 
     return res.status(200).render("overview", {
         tittle: "My tours", 
