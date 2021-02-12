@@ -116,6 +116,7 @@ app.post("/webhook-checkout", express.raw({type: "application/json"}), async (re
     try {
           // This req.body comes as raw not as json 
         event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET); 
+        console.log("evento enviardo desde el try 🎇🎇🎇", event);
 
     } catch (error) {
         // stripe recives this error it called this endpoint
