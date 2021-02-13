@@ -1,10 +1,9 @@
 const router = require("express").Router(); 
-const {getOverview, getTour, loginForm, logOut, accountView,getMyTours} = require("../controllers/viewsController");
+const {getOverview, getTour, loginForm, logOut, accountView,getMyTours, signUpForm} = require("../controllers/viewsController");
 const {isLoggedIn, authenticate} = require("../controllers/authController");
 
 
 router.use(isLoggedIn);
-
 
 router.get("/", getOverview); 
 
@@ -18,7 +17,8 @@ router.get("/login", loginForm);
 
 router.get("/logout", logOut);
 
-
 router.get("/account", accountView)
+
+router.get("/signUp", signUpForm)
 
 module.exports = router; 

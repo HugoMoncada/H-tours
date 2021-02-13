@@ -62,8 +62,7 @@ const createSendTokenAndCookie  = (user, statusCode, req, res) => {
     res.cookie("jwt", token, {
         expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
         httpOnly: true, 
-        // !UNCOMMENT THIS ON PROD, check git hub is different on his end
-        //secure: true
+        secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
     });
 
     // Remove from output ...select false on the schema is not working. 

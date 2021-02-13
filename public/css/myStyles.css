@@ -47,6 +47,18 @@ table {
 	border-spacing: 0;
 }
 
+:root {
+	--bluePine: #324851;
+	--newGrass: #86AC41;
+	--reflection: #34675C;
+	--mist: #7DA3A1;
+	--background-color: rgb(247, 247, 247)
+
+}
+  
+
+
+
 
 .logo-white{
 	width: 73px;
@@ -60,7 +72,7 @@ table {
 
 
 body{
-	background-color: rgb(247, 247, 247);
+	background-color: var(--background-color);
 }
 
 

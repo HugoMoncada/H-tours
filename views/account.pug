@@ -19,7 +19,7 @@ block content
                 .col-sm-12.col-md-3.account-options.py-5
                     ul.mb-5
                         +optionsItem("gear","/account", "Settings", true)
-                        +optionsItem("briefcase","#", "My Bookings")
+                        +optionsItem("briefcase","/my-tours", "My Bookings")
                         +optionsItem("star","#", "My Reviews")
                         +optionsItem("credit-card-2-back","#", "Billing")
                     if user.role == "admin"

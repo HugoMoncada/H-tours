@@ -69,3 +69,10 @@ exports.accountView = (req,res) => {
         tittle: "Account", 
     }); 
 }
+
+
+exports.signUpForm = (req,res) => {
+    return res.status(200).render("signUp", {
+        title: "Sign Up"
+    });
+}
