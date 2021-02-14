@@ -12,7 +12,7 @@ block content
     //- Always berified if there is an user .. this is mean its logged in 
     if user 
         .container 
-            .row 
+            .row.animate__animated.animate__fadeIn 
                 .col-sm-12.col-md-4.col-lg-3.account-options.py-5
                     ul.mb-5
                         +optionsItem("gear","/account", "Settings", true)

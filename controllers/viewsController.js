@@ -1,7 +1,11 @@
 const Tour = require("../models/TourModel"); 
 const Booking = require("../models/BookingModel");
 
-
+exports.getWelcome =  (req,res,next) => {
+    return res.status(200).render("welcome", {
+        tittle: "Welcome"
+    });
+}
 
 exports.getOverview = async (req,res,next) => {
 
@@ -73,6 +77,20 @@ exports.accountView = (req,res) => {
 
 exports.signUpForm = (req,res) => {
     return res.status(200).render("signUp", {
-        title: "Sign Up"
+        tittle: "Sign Up"
+    });
+}
+
+exports.forgotPassword  = (req,res) => {
+    return res.status(200).render("forgotPassword", {
+        tittle: "Forgot Password"
+    });
+}
+
+exports.resetPassword = (req,res) => {
+    const {token} = req.params;
+    return res.status(200).render("resetPassword", {
+        tittle: "Reset Password", 
+        token
     });
 }

@@ -1,0 +1,15 @@
+extends base
+
+
+block content 
+    .container 
+        .row.d-flex.my-5.animate__animated.animate__fadeIn
+            .col-12.col-md-6
+                img.welcomeImage(src="/img/Trip.png", alt="trip image")
+
+            .col-12.col-md-6.my-auto.welcome.px-5
+                p.mb-4.animate__animated.animate__flipInX
+                    | WELCOME TO 
+                    span.brandName NATOURS 
+                    |  YOUR BEST TRAVEL EXPERIENCE IS HERE!!
+                a.btn.rounded-pill.mx-auto(href="/all-tours") Our Tours 

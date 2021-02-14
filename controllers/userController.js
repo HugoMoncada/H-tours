@@ -168,7 +168,7 @@ exports.signUp = async (req, res, next) => {
             passwordConfirm: req.body.passwordConfirm
         }); 
 
-        // SEnd welcome email if error is prob here
+        // url to send in the mail ..here redirects to account
         const url = `${req.protocol}://${req.get('host')}/account`;
         try {
             await new Email(newUser, url).sendWelcome(); 

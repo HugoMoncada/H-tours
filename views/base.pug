@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-html(lang="en")
+html.h-100(lang="en")
     head
         block head
             meta(charset="UTF-8")
@@ -9,14 +9,15 @@ html(lang="en")
             //- meta(http_equiv="Content-Security-Policy" 
             //- content="default-src 'self' https://js.stripe.com/; script-src 'self' https://js.stripe.com/v3/;  frame-src https://js.stripe.com/;")
 
-            
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;600&display=swap" rel="stylesheet"> 
             link(rel="stylesheet", href="/css/bootstrap5/css/bootstrap.min.css")
-            
+            link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
             link(rel="stylesheet", href="/css/myStyles.css")
             link(rel="shortcut icon" type="image/png" href="/img/favicon.png")
             title Natours | #{tittle}
 
-    body
+    body.d-flex.flex-column.h-100
         include _header
       
 
@@ -31,6 +32,9 @@ html(lang="en")
             script(src="/css/bootstrap5/js/bootstrap.bundle.min.js")
             script(src="/js/dist/axios.min.js")
             script(src="/js/login.js")
+            script(src="/js/signUp.js")
+            script(src="/js/forgotPassword.js")
+            script(src="/js/resetPassword.js")
             script(src="/js/account.js")
            
         

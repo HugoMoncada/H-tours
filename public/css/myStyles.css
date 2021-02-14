@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'Brygada 1918', serif;
 }
 ol, ul {
 	list-style: none;
@@ -76,6 +77,23 @@ table {
 }
 
 
+.pageTitleContainer{
+	padding: 20px;
+	background-color: var(--bluePine);
+	margin-bottom: 30px;
+	
+}
+
+.pageTitle{
+	font-size: 50px;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px black;
+	color: var(--newGrass);
+	text-align: center;
+	
+
+}
+
 /* *---- GLOBAL STYLES -----* */
 
 body{
@@ -110,12 +128,17 @@ nav .nav-right-buttons a:hover, nav a:hover{
 }
 
 .nav-right-buttons{
+	display: flex;
 	justify-content: end;
 }
 
 .nav-right-buttons a{
 	color: var(--newGrass);
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px black;
 }
+
 /* burger button border */
 .navbar-toggler:focus{
 	border: 2px solid rgb(140, 185, 55);
@@ -159,8 +182,57 @@ nav .nav-right-buttons a:hover, nav a:hover{
 	}
 }
 
+.signUpButton{
+	border: 1px solid var(--newGrass);
+}
+
 
 /* +++++ END HEADER ++++++*/
+
+
+/* *---- WELCOME PAGE -----* */
+
+.welcomeImage{
+	max-width: 100%;
+}
+
+.brandName{
+	color: var(--newGrass);
+	font-weight: bold;
+}
+
+.welcome p{
+	font-size: 50px;
+	line-height: 70px;
+	color: var(--bluePine);
+}
+
+.welcome a{
+	background-image: var(--background-button-gradient);
+	border: none;
+	color: whitesmoke;
+	padding: 18px;
+	width: 100%;
+	font-size: 25px;
+}
+
+.welcome a:hover{
+	color: var(--reflection);
+	font-weight: bold;
+}
+
+
+@media (max-width: 650px) { 
+	.welcome p{
+		font-size: 30px;
+		text-align: center;
+	}
+}	
+
+
+
+/* +++++ END WELCOME ++++++*/
+
 
 
 /* *---- LOGIN -----* */
@@ -182,7 +254,7 @@ nav .nav-right-buttons a:hover, nav a:hover{
 /* +++++ END LOGIN ++++++*/
 
 
-/* ---- FORM STYLES ------*/
+/* *---- FORM STYLES -----* */
 
 .card{
 	box-shadow: 0px 6px 16px -9px rgba(0,0,0,0.9);
@@ -300,6 +372,14 @@ form button{
 .overviewCard .card-footer a:hover{
 	color: var(--reflection);
 	font-weight: bold;
+}
+
+/* My tours */
+
+.noBookedTours{
+	font-size: 30px;
+	color: var(--newGrass);
+	text-align: center;
 }
 
 /* ++++++ END OVERVIEW +++++++ */
@@ -436,9 +516,10 @@ form button{
 		from(rgba(47,61,77,1)),
 		to(rgba(140,185,55,0.85))
 	  );
-	  
 	  padding: 6em 0;
 	  margin-bottom: 6rem !important;
+	  align-content: center;
+	  min-height: 500px;
 }
 
 /* space at the beggining and the end */
@@ -765,6 +846,7 @@ footer a{
 	text-decoration: none;
 	color: rgb(56, 56, 56);
 	font-size: 18px;
+	color: var(--reflection);
 }
 
 footer a:hover{

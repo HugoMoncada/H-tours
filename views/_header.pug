@@ -25,7 +25,7 @@ nav.navbar.navbar-expand-lg.p-3
             a.navbar-brand(href='/') Natours
         button.navbar-toggler.col-6.col-md-3(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
             span.navbar-toggler-icon
-        #navbarSupportedContent.collapse.navbar-collapse.text-center
+        #navbarSupportedContent.collapse.navbar-collapse.text-center.py-1.mt-2
             .col-6.mb-2.d-none.d-lg-block.d-flex                      
                 img.logo-white.d-none.d-lg-block.mx-auto(src="/img/logo-white.png", alt="Natours logo")
             .col-sm-12.col-md-3.d-flex.nav-right-buttons
@@ -38,8 +38,8 @@ nav.navbar.navbar-expand-lg.p-3
                         p.my-auto.ms-1= user.name.split(" ")[0]
                 else
                     //- Not logged in 
-                    a.btn.me-2(href="/login") LOG IN
-                    a.btn.rounded-pill(href="/signUp") SIGN UP
+                    a.btn.me-2(href="/login") Log In
+                    a.btn.rounded-pill.signUpButton(href="/signUp") Sign Up
 
 
 
