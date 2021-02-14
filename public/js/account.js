@@ -1,21 +1,20 @@
-
 // In case the image file doesnt exist replace with default
 document.getElementById('photo-account-img').onerror = function() { 
   document.getElementById('photo-account-img').src = "/img/users/default.jpg"; 
 }
 
 
-const hideAlert = () => {
-  const el = document.querySelector(".alert")
-  if(el) el.parentElement.removeChild(el);
-}
+// const hideAlert = () => {
+//   const el = document.querySelector(".alert")
+//   if(el) el.parentElement.removeChild(el);
+// }
 
-const showAlert = (type, msg) => {
-  hideAlert(); 
-  const markup = `<div class="alert alert-${type} text-center">${msg}</div>`;
-  document.querySelector(".container").insertAdjacentHTML("afterbegin", markup);
-  window.setTimeout(hideAlert,5000);
-}
+// const showAlert = (type, msg) => {
+//   hideAlert(); 
+//   const markup = `<div class="alert alert-${type} text-center">${msg}</div>`;
+//   document.querySelector(".container").insertAdjacentHTML("afterbegin", markup);
+//   window.setTimeout(hideAlert,5000);
+// }
 
 
 
@@ -47,6 +46,7 @@ const updateData = async (data) => {
         url,
         data
       });
+
       if( response.data.status == "Success"){
         showAlert("success", "Data updated sucessfuly");
         setTimeout(() => {

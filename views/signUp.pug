@@ -9,21 +9,20 @@ block content
                     .card-header.pt-4.pb-3.text-center
                         p Sign Up
                     .card-body  
-                        form.p-3.login-form#formLogin
+                        form.p-3.login-form#formSignUp
                             article.mb-4
                                 label.form-label(for="name" ) Name
-                                input.form-control#email(type="name" required placeholder="your name here" name="name" maxlength=20)
+                                input.form-control#name(type="text" required placeholder="your name here" name="name" maxlength=20)
                             article.mb-4
                                 label.form-label(for="email" ) E-mail
                                 input.form-control#email(type="email" required placeholder="yourEmail@example.com" name="email")
-                            article.mb-5
+                            article.mb-4
                                 label.form-label(for="password") Password
                                 input.form-control#password(type="password" aria-describedby='passwordHelpBlock' required name="password" minlength=8)
-                                #passwordHelpBlock.form-text.help
-                                | Your password must be 8-20 characters long, must not contain spaces, special characters, or emoji.
+                                #passwordHelpBlock.form-text.help Your password must be 8-20 characters long, must not contain spaces, special characters, or emoji.
                             article.mb-5
-                            label.form-label(for="passwordConfirm") Password Confirm
-                            input.form-control#password(type="password" required name="passwordConfirm" minlength=8)
+                                label.form-label(for="passwordConfirm") Password Confirm
+                                input.form-control#passwordConfirm(type="password" required name="passwordConfirm" minlength=8)
                             
                             button.btn Sign Up
 

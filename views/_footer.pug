@@ -1,16 +1,15 @@
 //- TODO fix this stick it to thje bottom 
-block append head
-    link(rel="stylesheet", href="/css/footer.css")
-    
+
 footer.footer.mt-auto.py-4.container-fluid
     .row
-        .col-sm-12.col-md-6.d-flex.mb-2
-            img.mx-auto.d-md-none(src="/img/logo-green-small.png", alt="Natours logo green")
+        .col-sm-12.col-md-6.mb-2
             img.mx-auto.d-none.d-md-block(src="/img/logo-green.png", alt="Natours logo green")
         .col-sm-12.col-md-6.my-auto
             ul.my-3
+                li: img.mx-auto.d-md-none.mb-3(src="/img/logo-green-small.png", alt="Natours logo green")
                 li: a(href="#") About Us
                 li: a(href="#") Become a Guide
                 li: a(href="#") Careers
                 li: a(href="#") Contact
-            p.text-muted.text-center &copy Hugo moncada
+            ul.text-center
+                li: p.text-center &copy Hugo moncada

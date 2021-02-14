@@ -8,15 +8,12 @@ mixin optionsItem(icon,ref,name,active)
             p.my-auto= name
          
 
-block append head 
-    link(rel="stylesheet", href="/css/account.css")
-
 block content 
     //- Always berified if there is an user .. this is mean its logged in 
     if user 
         .container 
             .row 
-                .col-sm-12.col-md-3.account-options.py-5
+                .col-sm-12.col-md-4.col-lg-3.account-options.py-5
                     ul.mb-5
                         +optionsItem("gear","/account", "Settings", true)
                         +optionsItem("briefcase","/my-tours", "My Bookings")
@@ -30,11 +27,11 @@ block content
                             +optionsItem("star","#", "Manage Reviews")
                             +optionsItem("briefcase","#", "Manage Bookings")
 
-                .col-sm-12.col-md-9.py-5
+                .col-sm-12.col-md-8.py-5
                     .row
                         .col-8.mx-auto
                             p.accountFormTitle.text-center YOUR ACCOUNT SETTINGS
-                            form.p-3.login-form.accoutDataForm#accoutDataForm(enctype="multipart/form-data")
+                            form#accoutDataForm.p-3.login-form.accoutDataForm
                                 article.mb-4
                                     label.form-label(for="name" ) Name
                                     input.form-control#name(type="text" required name="name" value=user.name maxlength="30")
@@ -49,7 +46,7 @@ block content
                                 button.btn.mb-5 Save Settings
 
                             hr.w-100.mb-5
-                            p.accountFormTitle.text-center PASSWORD CHANGE
+                            p.mb-3.accountFormTitle.text-center PASSWORD CHANGE
                             form.p-3.login-form.accoutPasswordForm#accoutPasswordForm
                                 article.mb-4
                                     label.form-label(for="currentPassword" ) Current Password
@@ -69,5 +66,6 @@ block content
         .container.d-flex
             h1.logIn-text.my-5.py-5.mx-auto Please log in
 
-block append scripts 
-     script(src="/js/account.js")
+
+//- block append scripts 
+//-      script(src="/js/account.js")

@@ -47,35 +47,748 @@ table {
 	border-spacing: 0;
 }
 
+/* ///////////////////////////// */
+
+
 :root {
-	--bluePine: #324851;
-	--newGrass: #86AC41;
-	--reflection: #34675C;
-	--mist: #7DA3A1;
-	--background-color: rgb(247, 247, 247)
-
+	--bluePine: #2f3d4d;
+	--newGrass: rgb(140, 185, 55);
+	--oldGrass: #648821;
+	--reflection: #215e51;
+	--mist: #89b1af;
+	--background-color: rgb(240, 240, 240);
+	--white: (rgb(247, 247, 247));
+	--text-shadow: 1px 1px 1px #8b8b8b;
+	--background-title-gradient: -webkit-gradient(
+		linear,
+		left top,
+		right bottom,
+		from(rgba(140,185,55,0.85) ),
+		to(rgba(100,136,33,0.5) )
+	);
+	--background-button-gradient: -webkit-gradient(
+		linear,
+		left top,
+		right bottom,
+		from(rgb(140,185,55) ),
+		to(rgb(100,136,33) )
+	);
 }
-  
 
 
-
-
-.logo-white{
-	width: 73px;
-}
-
-
-.user-photo{
-	width: 40px;
-	border-radius: 50%;
-}
-
+/* *---- GLOBAL STYLES -----* */
 
 body{
 	background-color: var(--background-color);
 }
 
+.text-muted{
+	color: rgb(209, 208, 208) !important;
+}
+
+
+form button.btn:hover{
+	color: var(--reflection) !important;
+}
+
+
+/* +++++ END GLOBAL STYLES ++++++*/
+
+
+/* *---- HEADER/NAV  -----* */
+
+nav{
+	background-color: var(--bluePine);
+}
+
+nav a{
+	color: var(--newGrass);
+}
+
+nav .nav-right-buttons a:hover, nav a:hover{
+	color: var(--mist);
+}
+
+.nav-right-buttons{
+	justify-content: end;
+}
+
+.nav-right-buttons a{
+	color: var(--newGrass);
+}
+/* burger button border */
+.navbar-toggler:focus{
+	border: 2px solid rgb(140, 185, 55);
+	box-shadow: none;
+}
+
+/* burger icon - change the stroke in the text*/
+.navbar-toggler-icon{
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(140, 185, 55, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* fix logo */
+.logo-white{
+	width: 73px;
+}
+
+.nav-container{
+	justify-content: space-between;
+	/* Carefull with this, is necessary */
+	overflow: hidden;
+}
+
+.user-photo{
+	width: 40px;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+
+@media (max-width: 650px) { 
+	.nav-right-buttons{
+		justify-content: space-between;
+	}
+}
+
+
+@media screen and (min-width: 651px) and (max-width: 1025px){
+	.nav-right-buttons{
+		justify-content: center;
+		/* make the col-3 expand */
+		width: 100%;
+	}
+}
+
+
+/* +++++ END HEADER ++++++*/
+
+
+/* *---- LOGIN -----* */
+
+.login-card-footer p{
+	color: rgb(231, 231, 231);
+	text-decoration: none;
+}
+
+.login-card-footer a{
+	color: var(--mist);
+	text-decoration: none;
+}
+
+.login-card-footer a:hover{
+	color: var(--newGrass);
+}
+
+/* +++++ END LOGIN ++++++*/
+
+
+/* ---- FORM STYLES ------*/
+
+.card{
+	box-shadow: 0px 6px 16px -9px rgba(0,0,0,0.9);
+	background-color: var(--bluePine);
+}
+
+.card-header{
+    font-weight: bold;
+    color:  var(--newGrass);
+    font-size: 32px;
+    background-color: transparent;
+    border: none;
+    /* text-shadow: var(--text-shadow); */
+}
+
+form label{
+	font-weight: bold;
+    font-size: 17px;
+    color:  var(--newGrass);
+}
+
+.form-text{
+	font-size: 15px !important;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus{
+    background-color: rgb(231, 231, 231);
+    font-size: 17px;
+	color: var(--reflection);
+}
+
+form button{
+    width: 100%;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		right bottom,
+		from(var(--newGrass)),
+		to(var(--oldGrass))
+	);
+    color: whitesmoke !important;
+    font-weight: bold !important;
+	font-size: 20px !important;
+}
+
+
+/* ++++++++ END FORM STYLES +++++++ */
 
 
 
+/* *---- OVERVIEW -----* */
 
+.overviewCard svg{
+	margin-right: 10px;
+	color: var(--oldGrass);
+}
+
+.overview-card-header {
+	position: relative;
+}
+
+.card-image {
+	-webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+	clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+	max-height: 220px;
+}
+
+.card-header-image-title {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	text-align: end;
+}
+
+.card-header-image-title span {
+	text-shadow: 1px 1px 5px #313131;
+	text-transform: uppercase;
+	text-transform: uppercase;
+	font-size: 1.8em;
+	line-height: 1.3em;
+	padding: 0.3rem 1.1rem;
+	-webkit-box-decoration-break: clone;
+ 	-moz-box-decoration-break: clone;
+ 	box-decoration-break: clone;
+	color: whitesmoke;
+	background-image: var(--background-title-gradient);
+}
+
+.card-tittle{
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.price, .rating{
+	font-weight: bold;
+	color: var(--oldGrass);
+	font-size: 17px;
+}
+
+.overviewCard .card-footer{
+	background-color: #232f3a;
+}
+
+.overviewCard .card-footer a{
+	background-image: var(--background-button-gradient);
+	border: none;
+	color: whitesmoke;
+}
+
+.overviewCard .card-footer a:hover{
+	color: var(--reflection);
+	font-weight: bold;
+}
+
+/* ++++++ END OVERVIEW +++++++ */
+
+
+
+/* *----- TOUR PAGE -----* */
+
+
+.text-tour-page{
+	color: rgb(71, 71, 71);
+}
+
+.jumbo {
+	position: relative;
+	height: 34vw;
+	-webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+	clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+}
+
+.jumbo-head{
+	height: 100%;
+}
+
+.jumbo-image{
+	-o-object-fit: cover;
+	-moz-object-fit: cover;
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	-o-object-position: 50% 25%;
+	object-position: 50% 25%;
+}
+
+.overlay{
+	position: absolute;
+	width: 100%;
+  	height: 100%;
+  	background-image: -webkit-gradient(
+    	linear,
+    	left top,
+    	right bottom,
+		from(rgba(47,61,77,0.9)),
+		to(rgba(140,185,55,0.8))
+  	);
+}
+
+
+.tour-tittle{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	color: white; 
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	text-align: center;
+}
+
+.tour-name{
+	text-shadow: 1px 1px 5px #313131;
+	font-size: 6em;
+}
+
+.tour-jumbo-data span{
+	font-size: 26px;
+
+}
+
+.tour-jumbo-data svg{
+	margin-right: 5px;
+	align-items: center;
+	margin-bottom: 6px;
+}
+
+
+.main-tittle{
+	text-transform: uppercase;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: var(--reflection);
+	text-shadow: 1px 1px 1px #747474;
+}
+
+.quick-facts div, .guide-name{
+	font-size: 18px;
+}
+
+.bold{
+	font-weight: bold;
+	color: var(--reflection);
+	text-transform: uppercase;
+}
+
+.tour-main svg{
+	margin-right: 10px;
+	color: var(--reflection);
+	font-size: 20px;
+}
+
+.guide-photo{
+	width: 45px;
+	border-radius: 50%;
+}
+
+.tour-description{
+	line-height: 35px;
+	font-size: 20px;
+}
+
+.pictures-box{
+	-webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+	clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
+}
+
+.pictures-box .card{
+	background-color: transparent;
+}
+
+
+/* Reviews */
+
+.reviews{
+	display: grid;
+	grid-column-gap: 5rem;
+	grid-auto-flow: column;
+	overflow-x: scroll;
+	-ms-scroll-snap-type: x mandatory;
+	scroll-snap-type: x mandatory;
+	background: -webkit-gradient(
+		linear,
+		left top,
+		right bottom,
+		from(rgba(47,61,77,1)),
+		to(rgba(140,185,55,0.85))
+	  );
+	  
+	  padding: 6em 0;
+	  margin-bottom: 6rem !important;
+}
+
+/* space at the beggining and the end */
+.reviews:before,
+.reviews:after {
+  content: '';
+  width: 2rem;
+}
+
+.reviews .card {
+	background-color: var(--reflection);
+}
+
+.reviews .card-header img{
+	border-radius: 50%;
+	width: 50px;
+	margin-right: 7px;
+}
+
+.reviews .card .card-header span{
+	text-transform: uppercase;
+	font-size: 17px;
+	color: var(--mist);
+	
+}
+
+.reviews .card {
+	width: 18rem;
+	margin-right: 20px;
+}
+
+/* .reviews .card-header{
+	background-color: white;
+} */
+
+.reviews .card-body p{
+	font-style: italic;
+	color: whitesmoke;
+}
+
+
+.reviews .card-footer svg{
+	color: var(--newGrass);
+}
+
+
+/* Call to accion */
+
+.call-to-accion{
+	width: 60%;
+	box-shadow: 0px 0px 38px -11px rgba(0,0,0,0.7);
+	border-radius: 2%;
+	margin-bottom: 6rem !important;
+	background-color: var(--bluePine);
+}
+
+.call-tittle{
+	text-transform: uppercase;
+	font-size: 2em;
+	color: var(--newGrass);
+	font-weight: bold;
+}
+
+.call-description{
+	font-size: 22px;
+	color: var(--mist);
+}
+
+.call-button a{
+	background-image: var(--background-button-gradient);
+	color: whitesmoke;
+}
+
+/* MEDIA */
+
+@media (max-width: 650px) { 
+	
+	
+	.tour-name{
+		
+		font-size: 2em;
+	}
+
+	.tour-jumbo-data span{
+		font-size: 1em;
+	
+	}
+	
+	.tour-jumbo-data svg{
+		margin-right: 5px;
+		align-items: center;
+		margin-bottom: 6px;
+	}
+
+	.quick-facts {
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+
+	.quick-facts p{
+		text-align: center;
+	}
+
+	.description-col > p{
+		text-align: center;
+	}
+
+	
+	.pictures-box{
+		-webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+		clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+	}
+
+	/* reviews */
+
+	.call-to-accion{
+		width: 80%;
+	}
+
+
+	.call-to-accion div{
+		display: flex;
+		flex-direction: column;
+	}
+
+	
+	.call-tittle{
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+
+	.call-description{
+		font-size: 17px;
+	}
+
+}
+
+@media screen and (max-width: 850px) and (min-width: 651px){
+	
+	.tour-name{
+		
+		font-size: 4em;
+	}
+
+	.tour-jumbo-data span{
+		font-size: 2em;
+	
+	}
+	
+	.tour-jumbo-data svg{
+		margin-right: 5px;
+		align-items: center;
+		margin-bottom: 6px;
+	}
+	
+
+	.quick-facts p{
+		text-align: center;
+	}
+
+	.pictures-box{
+		-webkit-clip-path: polygon(0);
+		clip-path: none;
+	}
+
+	/* reviews */
+
+	.call-to-accion{
+		width: 80%;
+	}
+
+}
+
+/* ++++++ END TOUR PAGE +++++++ */
+
+
+/* *----- ACCOUNT -----* */
+
+.account-options{
+    /* background-color: var(--bluePine); */
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		right bottom,
+		from(rgb(47, 61, 77)),
+		to(rgba(47, 61, 77))
+	);;
+    padding-left: 0  !important;
+    padding-right: 0  !important;
+	border-top: 1px solid whitesmoke;
+}
+
+
+.account-options li{
+    margin-bottom: 11%;    
+}
+
+
+.account-options li a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.active,
+.account-options li:hover{
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border-left: 4px solid #fff !important;
+}
+
+.account-options li svg{
+    height: 9%;
+    width: 9%;
+    color: white;
+}
+
+.logIn-text{
+    font-size: 40px;
+    color: var(--reflection);
+}
+
+.adminTitle{
+    border-bottom: 2px solid white;
+    color: whitesmoke;
+}
+
+
+/* DATA FORM */
+
+.accountFormTitle{
+    font-weight: bold;
+    font-size: 23px;
+    color:var(--newGrass) !important;
+}
+
+
+#photo{
+    display: none;
+}
+
+.photoLabel{
+    padding: 20px;
+    border-bottom: 1px solid var(--newGrass) ;
+    color:var(--newGrass);
+    font-size: 18px;
+}
+
+.photoLabel:hover{
+    color: whitesmoke;
+    padding: 20px;
+    background-color: var(--oldGrass);
+    border-bottom: none
+}
+
+.accoutDataForm input {
+    padding: 15px;
+}
+
+.accoutDataForm input[type="text"],
+.accoutDataForm input[type="email"],
+.accoutDataForm input[type="password"],
+.accoutDataForm input[type="text"]:focus,
+.accoutDataForm input[type="email"]:focus,
+.accoutDataForm input[type="password"]:focus,
+.accoutPasswordForm input[type="password"]{
+    background-color: rgb(201, 201, 201);
+    font-size: 17px;
+    color: rgb(102, 102, 102);
+}
+
+.accoutDataForm button,
+.accoutPasswordForm button {
+    width: 100%;
+    background-color: #55c57a !important;
+    color: whitesmoke !important;
+    font-weight: bold !important;
+    font-size: 20px;
+}
+
+.accoutDataForm button:hover,
+.accoutPasswordForm button:hover{
+    background-color: #258b47 !important;
+}
+
+.accoutDataForm  article:nth-child(3) img{
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+}
+
+
+/* ++++++ END ACCOUNT +++++++ */
+
+
+
+/* *----- FOOTER -----* */
+
+footer{
+	background-color: lightgray;
+}
+
+footer img{
+	width: 200px;
+	height: 50px;
+}
+
+footer ul {
+	display: flex;
+	justify-content: center;
+}
+
+footer a{
+	justify-content: center;
+}
+
+footer ul li{
+	margin-right: 30px;
+}
+
+footer a{
+	text-decoration: none;
+	color: rgb(56, 56, 56);
+	font-size: 18px;
+}
+
+footer a:hover{
+	color: green;
+}
+
+
+/* MEDIA */
+
+@media (max-width: 750px) { 
+	
+	
+	footer img{
+		width: 110px;
+		height: 50px;
+		display: block;
+	}
+
+
+	footer ul {
+		display: block;
+		text-align: center;
+	}
+
+}
+
+/* ++++++ END FOOTER +++++++ */

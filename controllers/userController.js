@@ -244,26 +244,28 @@ exports.updateMe = async(req,res,next) => {
         }
 
 
-        // Delete previous photo from the server
-        const {photo} = await User.findOne({_id: req.user.id}); 
-
-        // Prevents new users to delete the "default.jpg" img
-        if(!photo.match("default.jpg")){
-            // If its not a new user delete the previous photo
-            fs.unlink(`./public/img/users/${photo}`, (err) => {
-                if(err){
-                    // console.log(err)
-                    throw new Error(error)
-                }
-                else{
-                    // console.log("Old user photo was deleted.");
-                }
-            });
-        }   
-
         // 2. "Sanitize" data to allow specific values only
         const filteredBody = filterObj(req.body, "name", "email"); 
         if( req.file ){
+            
+            // Delete previous photo from the server
+            const {photo} = await User.findOne({_id: req.user.id}); 
+
+            // Prevents new users to delete the "default.jpg" img
+            if(!photo.match("default.jpg")){
+                // If its not a new user delete the previous photo
+                fs.unlink(`./public/img/users/${photo}`, (err) => {
+                    if(err){
+                        // console.log(err)
+                        throw new Error(error)
+                    }
+                    else{
+                        // console.log("Old user photo was deleted.");
+                    }
+                });
+            }   
+
+            // Create new photo
             filteredBody.photo = req.file.filename
         }
 
