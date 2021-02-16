@@ -35,13 +35,14 @@ const resetPassword = async (token,password,passwordConfirm) => {
 
 }
 
-
-document.getElementById("resetMyPasswordForm").addEventListener("submit", (e) => {
-    e.preventDefault()
-    const password = document.getElementById("password").value
-    const passwordConfirm = document.getElementById("passwordConfirm").value    
-    const resetToken = document.getElementById("resetToken").innerHTML   
+if(document.getElementById("resetMyPasswordForm")){
+    document.getElementById("resetMyPasswordForm").addEventListener("submit", (e) => {
+        e.preventDefault()
+        const password = document.getElementById("password").value
+        const passwordConfirm = document.getElementById("passwordConfirm").value    
+        const resetToken = document.getElementById("resetToken").innerHTML   
+        
     
-
-    resetPassword(resetToken, password,passwordConfirm);
-});
+        resetPassword(resetToken, password,passwordConfirm);
+    });
+}

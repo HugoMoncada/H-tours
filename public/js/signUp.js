@@ -40,9 +40,8 @@ const signUp = async (name,email,password,passwordConfirm) => {
 
 
 
-
-
-document.getElementById("formSignUp").addEventListener("submit", (e) => {
+if(document.getElementById("formSignUp")){
+    document.getElementById("formSignUp").addEventListener("submit", (e) => {
         e.preventDefault();
         
         document.getElementById("signUpButton").innerText = "Loading...";
@@ -55,3 +54,6 @@ document.getElementById("formSignUp").addEventListener("submit", (e) => {
         signUp(name,email,password,passwordConfirm);
 
 });
+
+}
+

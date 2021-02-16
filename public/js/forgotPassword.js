@@ -37,14 +37,16 @@ const sendForgotPasswordEmail = async (email) => {
 
 } 
 
-
-document.getElementById("forgotMyPasswordForm").addEventListener("submit", (e) => {
-    e.preventDefault(); 
+if(document.getElementById("forgotMyPasswordForm")){
+    document.getElementById("forgotMyPasswordForm").addEventListener("submit", (e) => {
+        e.preventDefault(); 
+        
+        document.getElementById("btnForgotPassword").innerText = "Loading..."
     
-    document.getElementById("btnForgotPassword").innerText = "Loading..."
+        const email = document.getElementById("email").value; 
+    
+        sendForgotPasswordEmail(email); 
+    
+    });
+}
 
-    const email = document.getElementById("email").value; 
-
-    sendForgotPasswordEmail(email); 
-
-});

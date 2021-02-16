@@ -382,6 +382,15 @@ form button{
 	text-align: center;
 }
 
+/* MEDIA */
+
+@media screen and (max-width: 850px) and (min-width: 651px){
+	.card-header-image-title span {
+		font-size: 1.2em;
+	}
+}
+
+
 /* ++++++ END OVERVIEW +++++++ */
 
 

@@ -15,7 +15,7 @@ block content
                                         .card-picture-overlay 
                                         img(src=`img/tours/${tour.imageCover}`, alt=`${tour.name}`)
                                     .row 
-                                        .col-8.offset-1.card-header-image-title
+                                        .col-10.col-md-9.offset-1.card-header-image-title
                                             span= tour.name
                                 .card-body.text-muted.px-5.mt-2
                                     h5.card-tittle.mb-2= `${tour.difficulty} ${tour.duration}-day tour` 
@@ -44,7 +44,7 @@ block content
                                             </svg>
                                             span.my-auto= `${tour.maxGroupSize} people`
                                 .card-footer.pb-2
-                                    .row.text-muted.px-3
+                                    .row.text-muted.px-3.mb-2
                                         .col-sm-12.col-md-6.my-3.text-center
                                             p.mb-2 
                                                 span.price= `$${tour.price} `
@@ -53,7 +53,7 @@ block content
                                                 span.rating= tour.ratingsAverage 
                                                 span= ` - ratings ( ${tour.ratingsQuantity} )`
                                         .col-sm-12.col-md-6.d-flex.justify-content-center
-                                            a.btn.rounded-pill.my-auto.px-3.py-2(href=`/tour/${tour.slug}`) DETAILS
+                                            a.btn.rounded-pill.my-auto.px-4.py-2(href=`/tour/${tour.slug}`) DETAILS
         -else    
             p.noBookedTours You have not booked any tours yet. 
             

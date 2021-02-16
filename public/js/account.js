@@ -89,31 +89,31 @@ const updatePassword = async (currentPassword,newPassword,confirmPassword) => {
 }
 
 
-document.getElementById("accoutDataForm").addEventListener("submit", (e) => {
-  e.preventDefault()
-
-  // Recreate a form when sending files
-  const form = new FormData();
-  form.append("name", document.getElementById("name").value );
-  form.append("email", document.getElementById("email").value );
-  form.append("photo", document.getElementById("photo").files[0]);
-
-  updateData(form); 
-}); 
-
-
-document.getElementById("accoutPasswordForm").addEventListener("submit", (e) => {
-  e.preventDefault(); 
-
+if(document.getElementById("accoutDataForm")){
+  document.getElementById("accoutDataForm").addEventListener("submit", (e) => {
+    e.preventDefault()
   
+    // Recreate a form when sending files
+    const form = new FormData();
+    form.append("name", document.getElementById("name").value );
+    form.append("email", document.getElementById("email").value );
+    form.append("photo", document.getElementById("photo").files[0]);
   
-
-  const currentPassword = document.getElementById("currentPassword").value;
-  const newPassword =     document.getElementById("newPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+    updateData(form); 
+  }); 
   
-  updatePassword(currentPassword,newPassword,confirmPassword);
+}
 
+if(document.getElementById("accoutPasswordForm")){
+  document.getElementById("accoutPasswordForm").addEventListener("submit", (e) => {
+    e.preventDefault(); 
   
+    const currentPassword = document.getElementById("currentPassword").value;
+    const newPassword =     document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    
+    updatePassword(currentPassword,newPassword,confirmPassword);
+  
+  });
+}
 
-});
