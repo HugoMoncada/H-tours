@@ -16,8 +16,8 @@ block content
                 .col-sm-12.col-md-4.col-lg-3.account-options.py-5
                     ul.mb-5
                         +optionsItem("gear","/account", "Settings", true)
-                        +optionsItem("briefcase","/my-tours", "My Bookings")
-                        +optionsItem("star","#", "My Reviews")
+                        +optionsItem("briefcase","/my-bookings", "My Bookings")
+                        +optionsItem("star","/my-reviews", "My Reviews")
                         +optionsItem("credit-card-2-back","#", "Billing")
                     if user.role == "admin"
                         p.text-center.mb-4.pb-3.w-75.adminTitle.mx-auto ADMIN

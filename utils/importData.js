@@ -4,7 +4,7 @@ const DbConnection = require("../config/database");
 const Tour = require("../models/TourModel");
 const User = require("../models/UserModel");
 const Review = require("../models/ReviewModel");
-const file = require("../dev-data/data/users.json");
+const file = require("../dev-data/reviews.json");
 
 DbConnection(); 
 
@@ -23,5 +23,5 @@ const importData = async(Model, data) => {
 
 // *Change the model and the data. 
 // npm run data:import
-importData(User,file); 
+importData(Review,file); 
 

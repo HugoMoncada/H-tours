@@ -15,8 +15,7 @@ const bookTour = async (tourId) => {
         });
 
     } catch (error) {
-        // console.log(error)
-        // showAlert("danger", error)
+        throw new Error(error);
     }
 
 }

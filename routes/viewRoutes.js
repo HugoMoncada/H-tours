@@ -1,5 +1,5 @@
 const router = require("express").Router(); 
-const {getOverview, getTour, loginForm, logOut, accountView,getMyTours, signUpForm, getWelcome, forgotPassword, resetPassword} = require("../controllers/viewsController");
+const {getOverview, getTour, loginForm, logOut, accountView,getMyTours, signUpForm, getWelcome, forgotPassword, resetPassword, reviewTour, getMyReviews, updateReview, deleteReview} = require("../controllers/viewsController");
 const {isLoggedIn, authenticate} = require("../controllers/authController");
 
 
@@ -9,7 +9,15 @@ router.get("/", getWelcome);
 
 router.get("/all-tours", getOverview)
 
-router.get("/my-tours", authenticate ,getMyTours); 
+router.get("/my-bookings", authenticate ,getMyTours); 
+
+router.get("/review-tour/:tourId", reviewTour);
+
+router.get("/my-reviews",authenticate, getMyReviews);
+
+router.get("/update-review/:id", authenticate, updateReview);
+
+router.get("/delete-review/:id", authenticate, deleteReview);
 
 // router.get("/tour", getTour);
 router.get("/tour/:slug", getTour); 

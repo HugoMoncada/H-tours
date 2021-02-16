@@ -1,5 +1,8 @@
 const Tour = require("../models/TourModel"); 
+const Review = require("../models/ReviewModel"); 
 const Booking = require("../models/BookingModel");
+const axios = require("axios");
+const fetch = require("node-fetch");
 
 exports.getWelcome =  (req,res,next) => {
     return res.status(200).render("welcome", {
@@ -19,19 +22,20 @@ exports.getOverview = async (req,res,next) => {
 }
 
 exports.getMyTours = async (req,res,next) => {
-    // TODO:terminar esto 
+
     const bookings = await Booking.find({user: req.user.id}); 
 
     const tourIDs = bookings.map(el => el.tour);
     const tours = await Tour.find({ _id: { $in: tourIDs } });
    
 
-    return res.status(200).render("overview", {
-        tittle: "My tours", 
-        pageTitle: "My Tours",
+    return res.status(200).render("myBookings", {
+        tittle: "My Bookings", 
+        pageTitle: "My Bookigs",
         tours
     });
 }
+
 
 exports.getTour = async (req,res,next) => {
 
@@ -51,6 +55,95 @@ exports.getTour = async (req,res,next) => {
         tittle: tour.name,
         tour
     });
+}
+
+
+exports.reviewTour = async(req,res,next) => {
+    try {
+
+        const tour = await Tour.findOne({_id: req.params.tourId}); 
+
+        if(!tour){
+            return res.status(404).json({
+                status: "Fail", 
+                message: "Tour not found"
+            });
+        }
+        
+        res.status(200).render("reviewTour", {
+            tittle: "Create Review", 
+            tour
+        });
+
+    } catch (error) {
+        return res.status(400).json({
+                status: "Fail", 
+                message: error
+        });
+    }
+}
+
+
+exports.getMyReviews = async (req,res,next) => {
+    
+    try {
+        const reviews = await Review.find({user: req.user.id}); 
+        
+        if(reviews){
+            const tourIDs = reviews.map(el => el.tour);
+            const tours = await Tour.find({ _id: { $in: tourIDs } });
+            return res.status(200).render("myReviews", {
+                tittle: "My Reviews",
+                tours,
+                reviews
+            });        
+        }
+        
+        return res.status(200).render("myReviews", {
+            tittle: "My Reviews",
+            reviews
+        });  
+
+    } catch (error) {
+        throw new Error(error)
+    }
+   
+            
+}
+
+
+exports.updateReview = async(req, res, next) => {
+    const review = await Review.findOne({_id: req.params.id}); 
+
+    return res.status(200).render("updateReview", {
+        tittle: "Update Review",
+        review
+    });
+}
+
+
+exports.deleteReview = async (req,res,next) => {
+    try {
+        
+        const reviewDeleted = await Review.findOneAndDelete({_id: req.params.id }); 
+        if(reviewDeleted){
+            return res.status(200).render("myReviews",);
+        }   
+        else{
+            return res.status(400).json({
+                status: "Failed", 
+                message: "Error deleting review"
+            });
+        }
+
+    } catch (error) {
+        return res.status(500).json({
+            status: "Failed", 
+            message: error
+        });
+    }
+
+
 }
 
 

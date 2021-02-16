@@ -90,7 +90,7 @@ const updateMeSchema = Joi.object({
 
 // REVIEW Schemas
 const createReviewSchema = Joi.object({
-    review: Joi.string().required().trim(),
+    review: Joi.string().required().trim().max(150),
     rating: Joi.number().min(1).max(5).required(),
     tour: Joi.string().required().trim(),
     user: Joi.string().required().trim()

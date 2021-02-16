@@ -14,14 +14,21 @@ const compression = require("compression");
 const cors = require("cors");
 const {webhookCheckout} = require("./controllers/bookingController");
 const Booking = require("./models/BookingModel"); 
+
 const User = require("./models/UserModel"); 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+
+
 const port = process.env.PORT || 3000;
 
 const app = express(); 
 
+
 // allow heroku as a proxy
 app.enable("trust proxy")
+
+// mongoose.set('debug', true);
 
 app.set("view engine", "pug"); 
 app.set("views", path.join(__dirname, "views") );
@@ -91,15 +98,11 @@ app.use(helmet({
 );
 app.use(morgan("dev"));
 
+
 // *ROUTES
 // !This route is here because it CAN'T be parsed to json, this data is neccesary as RAW data
 // this post request is send by stripe as a webhook
 app.post("/webhook-checkout", express.raw({type: "application/json"}), webhookCheckout ); 
-
-
-
-
-
 
 
 // Body and Cookie parser from the request

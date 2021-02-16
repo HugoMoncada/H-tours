@@ -1,0 +1,35 @@
+extends base
+
+mixin radio(value,checked)
+    .form-check.form-check-inline
+        input.form-check-input(type='radio' name='inlineRadioOptions' value= value checked=checked id=`inlineRadio${value}`)
+        label.form-check-label(for=`inlineRadio${value}`)= value
+
+block content
+    .container 
+        .row.animate__animated.animate__zoomInDown
+            .col-md-8.col-lg-6.mx-auto.my-5
+                .card
+                    .card-header.pt-4.pb-2.text-center
+                        p.mb-1 Update Review
+
+                    .card-body  
+                        form.p-3.login-form#formUpdateReview
+                            article.mb-4
+                                label.form-label.d-block Rating 
+
+                                each number in [1,2,3,4,5]
+                                    if(review.rating == number)
+                                        +radio(number, true)
+                                    else
+                                        +radio(number, false)
+
+                            article.mb-5
+                                label.form-label(for="review") Review
+                                textarea#review.d-block.w-100(name="review", cols="30", rows="3" required maxlength=150  )= review.review
+
+                            input#reviewId(type="hidden" value=`${review.id}`) 
+
+                            button.btn Update  
+                        
+                                       

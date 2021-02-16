@@ -1,6 +1,6 @@
 const router = require("express").Router({mergeParams:true});
 const {createReview,getAllReviews,getOneReview,updateReview, deleteReview} = require("../controllers/reviewController");
-const {validateUpdateReviewFields} = require("../utils/fieldValidators");
+const {validateUpdateReviewFields, validateCreateReviewFields} = require("../utils/fieldValidators");
 const {authenticate, restricTo} = require("../controllers/authController");
 
 
@@ -10,7 +10,7 @@ const {authenticate, restricTo} = require("../controllers/authController");
     Doesn't use validation schema due to the way a review can be created from a tour route
     The create review from tours can send params or body as data, so fields are validated in the db instead.
 */
-router.post("/", authenticate, restricTo("user"), createReview); 
+router.post("/", authenticate, restricTo("user"), validateCreateReviewFields, createReview); 
 
 
 //*@desc   Get one review
@@ -30,7 +30,8 @@ router.patch("/:id", authenticate, restricTo("user", "admin"), validateUpdateRev
 
 //*@desc   Delete a review 
 //*@route  {host}/api/v1/reviews/:id
-router.delete("/:id", authenticate, restricTo("user", "admin"), deleteReview); 
+router.delete("/:id", deleteReview); 
 
+// , authenticate, restricTo("user", "admin"), 
 
 module.exports = router; 

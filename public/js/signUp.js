@@ -23,7 +23,7 @@ const signUp = async (name,email,password,passwordConfirm) => {
         if(response.status == "Success"){
             showAlert("success", "Welcome To Natours");
             setTimeout(() => {
-                location.assign("/"); 
+                location.assign("/all-tours"); 
             }, 1000);
         }
         else{

@@ -30,7 +30,7 @@ const login = async (email, password) => {
         if(response.status == "Success"){
             showAlert("success", "Logged in sucessfuly");
             setTimeout(() => {
-                location.assign("/"); 
+                location.assign("/all-tours"); 
             }, 1000);
         }
         else{
@@ -41,7 +41,7 @@ const login = async (email, password) => {
         }
 
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
 }
 

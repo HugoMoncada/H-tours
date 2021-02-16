@@ -19,6 +19,12 @@ exports.createReview = async (req,res,next) => {
             }
         });
     } catch (error) {
+        if(error.code === 11000){
+            return res.status(400).json({
+                status: "Fail",
+                message: "There is a review to this tour from this user already created!, Only 1 review per user to a tour is allowed"
+            });
+        }
         return res.status(400).json({
             status: "Fail",
             message: error

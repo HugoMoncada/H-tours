@@ -1,0 +1,43 @@
+extends base
+
+
+block content
+    .container 
+        .row.animate__animated.animate__zoomInDown
+            .col-md-8.col-lg-6.mx-auto.my-5
+                .card
+                    .card-header.pt-4.pb-2.text-center
+                        p.mb-1 Create Review
+                        p= tour.name
+                        
+                    .card-body  
+                        form.p-3.login-form#formCreateReview
+                            article.mb-4
+                                label.form-label.d-block Rating 
+
+                                .form-check.form-check-inline
+                                    input#inlineRadio1.form-check-input(type='radio' name='inlineRadioOptions' value='1')
+                                    label.form-check-label(for='inlineRadio1') 1
+                                .form-check.form-check-inline
+                                    input#inlineRadio2.form-check-input(type='radio' name='inlineRadioOptions' value='2')
+                                    label.form-check-label(for='inlineRadio2') 2
+                                .form-check.form-check-inline
+                                    input#inlineRadio3.form-check-input(type='radio' name='inlineRadioOptions' value='3')
+                                    label.form-check-label(for='inlineRadio3') 3 
+                                .form-check.form-check-inline
+                                    input#inlineRadio4.form-check-input(type='radio' name='inlineRadioOptions' value='4')
+                                    label.form-check-label(for='inlineRadio4') 4 
+                                .form-check.form-check-inline
+                                    input#inlineRadio5.form-check-input(type='radio' name='inlineRadioOptions' value='5')
+                                    label.form-check-label(for='inlineRadio5') 5 
+
+                            article.mb-5
+                                label.form-label(for="review") Review
+                                textarea#review.d-block.w-100(name="review", cols="30", rows="3" required maxlength=150) 
+
+                            input#userId(type="hidden" value=`${user.id}`) 
+                            input#tourId(type="hidden" value=`${tour.id }`) 
+
+                            button.btn Review  
+                        
+                                       

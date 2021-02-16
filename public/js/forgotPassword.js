@@ -16,7 +16,6 @@ const sendForgotPasswordEmail = async (email) => {
         });
     
         const response = await call.json(); 
-        console.log(response)
     
         if(response.status == "Success"){
             showAlert("success", `We have send you an Email to ${email} to reset your password`);
