@@ -1,24 +1,3 @@
-//- nav.navbar.navbar-expand-lg.p-3
-//-     .container-fluid
-//-         a.navbar-brand(href='/') Natours
-//-         button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
-//-             span.navbar-toggler-icon
-//-         #navbarSupportedContent.collapse.navbar-collapse
-//-             .mx-auto.mb-2                      
-//-                 img.logo-white.d-none.d-lg-block(src="/img/logo-white.png", alt="Natours logo")
-//-             .d-flex.nav-right-buttons
-//-                 // comes from isLoggedIn asssinged to locals
-//-                 if user
-//-                     //- logged in
-//-                     a.btn.my-auto(href="/logout") Log Out
-//-                     a.btn.d-flex(href="/account")
-//-                         img.user-photo(src=`/img/users/${user.photo}`, alt="user photo")
-//-                         p.my-auto.ms-1= user.name.split(" ")[0]
-//-                 else
-//-                     //- Not logged in 
-//-                     a.btn.me-2(href="/login") LOG IN
-//-                     a.btn.rounded-pill(href="/signUp") SIGN UP
-
 nav.navbar.navbar-expand-lg.p-3
     .row.container-fluid.nav-container
         .col-6.col-md-3
@@ -26,8 +5,9 @@ nav.navbar.navbar-expand-lg.p-3
         button.navbar-toggler.col-6.col-md-3(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
             span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse.text-center.py-1.mt-2
-            .col-6.mb-2.d-none.d-lg-block.d-flex                      
-                img.logo-white.d-none.d-lg-block.mx-auto(src="/img/logo-white.png", alt="Natours logo")
+            .col-6.mb-2.d-none.d-lg-block.d-flex
+                a(href="/all-tours")                       
+                    img.logo-white.d-none.d-lg-block.mx-auto(src="/img/logo-white.png", alt="Natours logo")
             .col-sm-12.col-md-3.d-flex.nav-right-buttons
                 // comes from isLoggedIn asssinged to locals
                 if user
