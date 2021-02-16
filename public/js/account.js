@@ -4,19 +4,6 @@ document.getElementById('photo-account-img').onerror = function() {
 }
 
 
-// const hideAlert = () => {
-//   const el = document.querySelector(".alert")
-//   if(el) el.parentElement.removeChild(el);
-// }
-
-// const showAlert = (type, msg) => {
-//   hideAlert(); 
-//   const markup = `<div class="alert alert-${type} text-center">${msg}</div>`;
-//   document.querySelector(".container").insertAdjacentHTML("afterbegin", markup);
-//   window.setTimeout(hideAlert,5000);
-// }
-
-
 
 // Change preview photo
 document.getElementById("photo").addEventListener("click", (e) => {
@@ -48,7 +35,7 @@ const updateData = async (data) => {
       });
 
       if( response.data.status == "Success"){
-        showAlert("success", "Data updated sucessfuly");
+        showAlert("success", "Data updated successfully");
         setTimeout(() => {
             location.assign("/account"); 
         }, 1000);
@@ -81,13 +68,19 @@ const updatePassword = async (currentPassword,newPassword,confirmPassword) => {
     }); 
     const response = await call.json(); 
     if(response.status == "Success"){
-      showAlert("success", "Password updated sucessfuly");
+      showAlert("success", "Password updated successfully");
+      document.getElementById("savePasswordBtn").innerText = "Password updated successfully" ;
       setTimeout(() => {
           location.assign("/account"); 
       }, 1000);
     }
     else{
       showAlert("danger", `${response.message}`);
+      window.scrollTo(0, 0);
+      document.getElementById("savePasswordBtn").innerText = `${response.message}` ;
+      setTimeout(() => {
+        location.assign("/account"); 
+      }, 2000);
     }
 
   } catch (error) {
@@ -112,10 +105,15 @@ document.getElementById("accoutDataForm").addEventListener("submit", (e) => {
 document.getElementById("accoutPasswordForm").addEventListener("submit", (e) => {
   e.preventDefault(); 
 
-  const currentPassword = document.getElementById("currentPassword").value
-  const newPassword =     document.getElementById("newPassword").value
-  const confirmPassword = document.getElementById("confirmPassword").value
+  
+  
+
+  const currentPassword = document.getElementById("currentPassword").value;
+  const newPassword =     document.getElementById("newPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
   
   updatePassword(currentPassword,newPassword,confirmPassword);
+
+  
 
 });

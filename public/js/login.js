@@ -5,7 +5,7 @@ const hideAlert = () => {
 
 const showAlert = (type, msg) => {
     hideAlert(); 
-    const markup = `<div class="alert alert-${type} text-center">${msg}</div>`;
+    const markup = `<div class="alert alert-${type} text-center fs-5">${msg}</div>`;
     document.querySelector(".container").insertAdjacentHTML("afterbegin", markup);
     window.setTimeout(hideAlert,5000);
 }
@@ -28,7 +28,7 @@ const login = async (email, password) => {
         const response = await call.json(); 
         
         if(response.status == "Success"){
-            showAlert("success", "Logged in sucessfuly");
+            showAlert("success", "Logged in successfully");
             setTimeout(() => {
                 location.assign("/all-tours"); 
             }, 1000);

@@ -23,7 +23,7 @@ const createReview =  async (rating,review,tour, user) => {
         if(response.status == "Success"){
             showAlert("success", "Review created sucessfuly");
             setTimeout(() => {
-                location.assign("/my-bookings"); 
+                location.assign("/my-reviews"); 
             }, 1000);
         }
         else{

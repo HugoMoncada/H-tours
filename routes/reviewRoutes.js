@@ -30,8 +30,8 @@ router.patch("/:id", authenticate, restricTo("user", "admin"), validateUpdateRev
 
 //*@desc   Delete a review 
 //*@route  {host}/api/v1/reviews/:id
-router.delete("/:id", deleteReview); 
+router.delete("/:id", authenticate, restricTo("user", "admin"),  deleteReview); 
 
-// , authenticate, restricTo("user", "admin"), 
+// 
 
 module.exports = router; 

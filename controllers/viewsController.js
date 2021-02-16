@@ -1,8 +1,7 @@
 const Tour = require("../models/TourModel"); 
 const Review = require("../models/ReviewModel"); 
 const Booking = require("../models/BookingModel");
-const axios = require("axios");
-const fetch = require("node-fetch");
+
 
 exports.getWelcome =  (req,res,next) => {
     return res.status(200).render("welcome", {
@@ -94,6 +93,7 @@ exports.getMyReviews = async (req,res,next) => {
             const tours = await Tour.find({ _id: { $in: tourIDs } });
             return res.status(200).render("myReviews", {
                 tittle: "My Reviews",
+                pageTitle: "My Reviews",
                 tours,
                 reviews
             });        
@@ -101,6 +101,7 @@ exports.getMyReviews = async (req,res,next) => {
         
         return res.status(200).render("myReviews", {
             tittle: "My Reviews",
+            pageTitle: "My Reviews",
             reviews
         });  
 
