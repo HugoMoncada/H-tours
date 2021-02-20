@@ -30,7 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	font-family: 'Brygada 1918', serif;
+	font-family:   "sans-serif"; 
 }
 ol, ul {
 	list-style: none;
@@ -883,3 +883,93 @@ footer a:hover{
 }
 
 /* ++++++ END FOOTER +++++++ */
+
+
+/* *----- EXTRAS -----* */
+
+.extrasContainer{
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+	background-image: 
+	-webkit-gradient(
+    	linear,
+    	left top,
+    	right bottom,
+		from(rgba(47,61,77,0.9)),
+		to(rgba(140,185,55,0.8))
+  	),
+	url("../img/other/aboutUsImage.jpeg"); 
+	background-repeat: no-repeat; 
+	background-size: cover; 
+	background-position: center center;
+	background-attachment: fixed; 
+	justify-content: center;
+}
+
+
+
+.extras-title{
+	font-size: 7rem;
+	color: whitesmoke;
+	border-bottom: 1px solid whitesmoke;
+	
+}
+
+
+.extras-content{
+	color: whitesmoke;
+	font-size: 1.5rem;
+	line-height: 30px;
+}
+
+
+
+/* MEDIA */
+
+@media (max-width: 750px) { 
+	
+	.extrasContainer{
+		display: flex;
+		align-items: center;
+		height: 100vh;
+		flex-direction: column;
+		background-image: 
+		-webkit-gradient(
+			linear,
+			left top,
+			right bottom,
+			from(rgba(47,61,77,0.9)),
+			to(rgba(140,185,55,0.8))
+		  );
+	
+	}
+	
+	.extras-title{
+		font-size: 4rem;
+	}
+	
+	.extras-content{
+		font-size: 1.1rem;
+	}
+	
+}
+
+
+ @media screen and (max-width: 850px) and (min-width: 651px){  
+	
+	.extras-title{
+		font-size: 4rem;
+	}
+	
+	.extras-content{
+		font-size: 1.1rem;
+	}
+	
+}
+
+
+
+
+/* ++++++ END EXTRAS +++++++ */

@@ -1,5 +1,9 @@
 const router = require("express").Router(); 
-const {getOverview, getTour, loginForm, logOut, accountView,getMyTours, signUpForm, getWelcome, forgotPassword, resetPassword, reviewTour, getMyReviews, updateReview, deleteReview} = require("../controllers/viewsController");
+const {
+    getOverview, getTour, loginForm, logOut, accountView,
+    getMyTours, signUpForm, getWelcome, forgotPassword, 
+    resetPassword, reviewTour, getMyReviews, updateReview, 
+    deleteReview, getAboutUs} = require("../controllers/viewsController");
 const {isLoggedIn, authenticate} = require("../controllers/authController");
 
 
@@ -34,5 +38,10 @@ router.get("/signUp", signUpForm);
 router.get("/forgotPassword", forgotPassword);
 
 router.get("/resetPassword/:token", resetPassword)
+
+
+// Footer pages
+router.get("/aboutUs", getAboutUs);
+
 
 module.exports = router; 

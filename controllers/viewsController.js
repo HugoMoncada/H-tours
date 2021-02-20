@@ -188,3 +188,10 @@ exports.resetPassword = (req,res) => {
         token
     });
 }
+
+
+exports.getAboutUs = (req, res) => {
+    return res.status(200).render("aboutUs",{
+        tittle: "About Us"
+    }); 
+}
