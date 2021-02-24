@@ -24,11 +24,7 @@ const sendForgotPasswordEmail = async (email) => {
             }, 2000);
         }
         else{
-            console.log(response)
             showAlert("danger", response.message);
-            setTimeout(() => {
-                location.assign("/forgotPassword");
-            }, 2500);
         }
 
     } catch (error) {

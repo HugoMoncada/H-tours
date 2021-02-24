@@ -35,9 +35,6 @@ const login = async (email, password) => {
         }
         else{
             showAlert("danger", response.message);
-            setTimeout(() => {
-                location.assign("/login");
-            }, 2500);
         }
 
     } catch (error) {

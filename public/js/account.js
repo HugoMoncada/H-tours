@@ -78,9 +78,6 @@ const updatePassword = async (currentPassword,newPassword,confirmPassword) => {
       showAlert("danger", `${response.message}`);
       window.scrollTo(0, 0);
       document.getElementById("savePasswordBtn").innerText = `${response.message}` ;
-      setTimeout(() => {
-        location.assign("/account"); 
-      }, 2000);
     }
 
   } catch (error) {

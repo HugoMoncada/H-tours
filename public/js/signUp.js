@@ -28,9 +28,6 @@ const signUp = async (name,email,password,passwordConfirm) => {
         }
         else{
             showAlert("danger", response.message);
-            setTimeout(() => {
-                location.assign("/signUp");
-            }, 2500);
         }
    } catch (error) {
         throw new Error(error)

@@ -914,7 +914,6 @@ footer a:hover{
 	font-size: 7rem;
 	color: whitesmoke;
 	border-bottom: 1px solid whitesmoke;
-	
 }
 
 
@@ -922,6 +921,18 @@ footer a:hover{
 	color: whitesmoke;
 	font-size: 1.5rem;
 	line-height: 30px;
+}
+
+
+.extras-title-alt{
+	font-size: 1.7rem;
+	color: var(--oldGrass);
+}
+
+.extras-content-alt{
+	font-size: 1.6rem;
+	line-height: 30px;
+	line-height: 36px;
 }
 
 

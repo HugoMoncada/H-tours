@@ -195,3 +195,7 @@ exports.getAboutUs = (req, res) => {
         tittle: "About Us"
     }); 
 }
+
+exports.becomeGuide = (req,res) => {
+    return res.status(200).render("becomeGuide");
+}

@@ -56,7 +56,6 @@ const updateReview = async (rating,review, id) => {
         });
 
         const response = await call.json(); 
-        console.log(response);
 
         if(response.status == "Success"){
             showAlert("success", "Review updated sucessfuly");
@@ -67,7 +66,6 @@ const updateReview = async (rating,review, id) => {
         else{
             showAlert("danger", response.message);
         }
-
 
     } catch (error) {
         throw new Error(error);
@@ -92,7 +90,7 @@ if(document.getElementById("formCreateReview")){
 if(document.getElementById("formUpdateReview")){
     document.getElementById("formUpdateReview").addEventListener("submit", (e) => {
         e.preventDefault();
-        console.log("presionado")
+        
         const rating = document.querySelector("input[name=inlineRadioOptions]:checked").value;
         const review = document.getElementById("review").value.trim();
         const reviewId = document.getElementById("reviewId").value;

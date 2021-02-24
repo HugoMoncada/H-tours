@@ -3,7 +3,7 @@ const {
     getOverview, getTour, loginForm, logOut, accountView,
     getMyTours, signUpForm, getWelcome, forgotPassword, 
     resetPassword, reviewTour, getMyReviews, updateReview, 
-    deleteReview, getAboutUs} = require("../controllers/viewsController");
+    deleteReview, getAboutUs, becomeGuide} = require("../controllers/viewsController");
 const {isLoggedIn, authenticate} = require("../controllers/authController");
 
 
@@ -42,6 +42,8 @@ router.get("/resetPassword/:token", resetPassword)
 
 // Footer pages
 router.get("/aboutUs", getAboutUs);
+
+router.get("/become-a-guide", becomeGuide );
 
 
 module.exports = router; 

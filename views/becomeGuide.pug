@@ -1,0 +1,27 @@
+extends base
+
+block content
+      .container.my-5 
+        .row.animate__animated.animate__fadeIn
+            .col-sm-12.col-md-6.d-flex.my-auto.container
+                p.extras-content-alt 
+                    | Greetings. Please tell us why would you like to be part of 
+                    span.extras-title-alt NATOURS 
+                    | as a tour guide, with a brief description about you and your experience in the field.
+            .col-sm-12.col-md-6
+                .card.mt-5
+                    .card-header.pt-4.pb-3.text-center
+                        p Become a Guide
+                    .card-body  
+                        form.p-3.login-form#becomeGuideForm
+                            article.mb-4
+                                label.form-label(for="name" ) Name
+                                input.form-control#email(type="text" required placeholder="Your Name Here" name="name")
+                            article.mb-4
+                                label.form-label(for="email" ) E-mail
+                                input.form-control#email(type="email" required placeholder="yourEmail@example.com" name="email")
+                            article.mb-4
+                                label.form-label(for="description") Description
+                                textarea#description.d-block.w-100(name="description", cols="30", rows="4" required maxlength=250) 
+                            button#btnBecomeGuide.btn Send
+      
