@@ -11,7 +11,7 @@
 A full-stack with server side rendering project, built using Node.js, Express, MongoDB, Mongoose. 
 I wanted to create a big project so i could learn more about Express.js, how to create a Rest API and web development in general. 
 * You can check the API documentation [Here](https://documenter.getpostman.com/view/10330595/TzCMeTwn)
-* or check out the final result [Here](https://tours-hugo.herokuapp.com/).
+* or check out the final result [Here](https://tours-hugo.herokuapp.com/).  (Free server, it may take a bit to load the first time)
 
 ## Features
 * CRUD tours, based on role
